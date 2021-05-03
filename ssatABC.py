@@ -35,24 +35,24 @@ def print_help():
     print("python3 main.py input_file output_file")
 
 if __name__ == "__main__":
-    if (len(sys.argv) != 3):
+    if (len(sys.argv) != 4):
         print_help()
         exit()
     clause_num, var_num, counter_type, clauses, projected, weighted = parse(sys.argv[1])
-    write_sdimacs("tmp/tmp.sdimacs", clause_num, var_num, counter_type, clauses, projected, weighted)
+    write_sdimacs(sys.argv[2], clause_num, var_num, counter_type, clauses, projected, weighted)
     logger.info("Finished converting MCC 2021 format into sdimacs")
     logger.info("Running SSAT solver...")
     prob = run("./abc", "tmp/tmp.sdimacs")
     logger.info("Satisfying probabilty = {}".format(prob))
     if counter_type == MCType.PROJECTED:
         count = (float(prob) * pow(2, (len(projected))))
-        write_result(sys.argv[2], count)
+        write_result(sys.argv[3], count)
     elif counter_type == MCType.WEIGHTED:
         count = prob
-        write_result(sys.argv[2], count)
+        write_result(sys.argv[3], count)
     else:
         count = (float(prob) * pow(2, (var_num)))
-        write_result(sys.argv[2], count)
+        write_result(sys.argv[3], count)
 
 
 
