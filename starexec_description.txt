@@ -1,0 +1,3 @@
+This is a model counter based on SSAT solving.
+It supports instances from all three tracks in the MC Competition.
+For more information, please visit: https://github.com/NTU-ALComLab/MCC2021
