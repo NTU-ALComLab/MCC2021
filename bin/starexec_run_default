@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo "Running the default configuration ..."
+echo "Input file: $1"
+echo "Converted SSAT file: $2"
+echo "Output file: $3"
+
+python3 ssatABC.py $1 $2 $3
