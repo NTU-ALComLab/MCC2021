@@ -117,7 +117,7 @@ def write_sdimacs(filename: str, clause_num, var_num, counter_type, clauses, pro
                 f.write("{} ".format(v))
             f.write("0\n")
 
-def write_result(filename: str, res):
+def write_result(filename: str, res, counter_type):
     with open(filename, mode='w') as f:
         if res == 0:
             logger.info("UNSATISFIABLE!!!")
@@ -125,7 +125,10 @@ def write_result(filename: str, res):
         else:
             logger.info("SATISFIABLE with model count = {}".format(res))
             f.write("s SATISFIABLE\n")
-            f.write("c s exact arb int {}\n".format(res))
+            if counter_type != MCType.WEIGHTED:
+                f.write("c s exact arb int {}\n".format(int(res)))
+            else:
+                f.write("c s exact arb float {}\n".format(int(res)))
 
 if __name__ == "__main__":
     clause_num, var_num, counter_type, clauses, projected, weighted = parse("wmc.cnf")
