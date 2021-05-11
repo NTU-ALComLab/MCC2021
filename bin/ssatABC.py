@@ -42,7 +42,7 @@ if __name__ == "__main__":
     write_sdimacs(sys.argv[2], clause_num, var_num, counter_type, clauses, projected, weighted)
     logger.info("Finished converting MCC 2021 format into sdimacs")
     logger.info("Running SSAT solver...")
-    prob = run("./abc", "tmp/tmp.sdimacs")
+    prob = run("./abc", sys.argv[2])
     logger.info("Satisfying probabilty = {}".format(prob))
     if counter_type == MCType.PROJECTED:
         count = (float(prob) * pow(2, (len(projected))))
