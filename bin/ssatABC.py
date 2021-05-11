@@ -21,7 +21,7 @@ def run(binary: str, file: str):
         out, errs = p.communicate()
         out = out.decode("utf-8").split('\n')
         for l in out:
-            res = re.match(".*Satisfying probability\s*\:\s*(\d+\.\d+e-\d+).*", l)
+            res = re.match(".*Satisfying probability\s*\:\s*(\d+\.\d+e[-+]\d+).*", l)
             if res != None:
                 return str(res.group(1))
 
