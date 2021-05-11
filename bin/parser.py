@@ -91,17 +91,20 @@ def parse(filename: str):
 def write_sdimacs(filename: str, clause_num, var_num, counter_type, clauses, projected, weighted):
     with open(filename, mode='w') as f:
         # HACK add one variable to create an exist level in MC or WMC
-        f.write("p cnf {} {}\n".format(var_num+1, clause_num))
-        f.write("e {} 0\n".format(var_num+1))
+        if counter_type != MCType.PROJECTED:
+            f.write("p cnf {} {}\n".format(var_num+1, clause_num))
+            f.write("e {} 0\n".format(var_num+1))
+        else:
+            f.write("p cnf {} {}\n".format(var_num, clause_num))
         if counter_type == MCType.PROJECTED:
             count = 0
+            for i in projected:
+                f.write("r {} {} 0\n".format(0.5, i))
             for i in range(1, var_num+1):
                 if count < len(projected) and projected[count] == i:
                     count = count + 1
                     continue
                 f.write("e {} 0\n".format(i))
-            for i in projected:
-                f.write("r {} {} 0\n".format(0.5, i))
 
         else:
             for i in range(1, var_num+1):
