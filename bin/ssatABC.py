@@ -46,13 +46,13 @@ if __name__ == "__main__":
     logger.info("Satisfying probabilty = {}".format(prob))
     if counter_type == MCType.PROJECTED:
         count = (float(prob) * pow(2, (len(projected))))
-        write_result(sys.argv[3], count)
+        write_result(sys.argv[3], count, counter_type)
     elif counter_type == MCType.WEIGHTED:
         count = prob
-        write_result(sys.argv[3], count)
+        write_result(sys.argv[3], count, counter_type)
     else:
         count = (float(prob) * pow(2, (var_num)))
-        write_result(sys.argv[3], count)
+        write_result(sys.argv[3], count, counter_type)
 
 
 
