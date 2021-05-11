@@ -1,0 +1,18 @@
+c c This file describes a weighted CNF in MC 2021 format
+c c with 6 variables and 4 clauses
+p cnf 6 4
+c t wmc
+c c Weights are given as follows, spaces may be added
+c c to improve readability.
+c p weight 1 0.4 0
+c p weight 2 0.5 0
+c p weight 3 0.4 0
+c p weight 4 0.3 0
+c p weight 5 0.5 0
+c p weight 6 0.7 0
+-1 -2 0
+2 3 -4 0
+c this is a comment and will be ignored
+4 5 0
+4 6 0
+c same
