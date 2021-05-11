@@ -128,7 +128,7 @@ def write_result(filename: str, res, counter_type):
             if counter_type != MCType.WEIGHTED:
                 f.write("c s exact arb int {}\n".format(int(res)))
             else:
-                f.write("c s exact arb float {}\n".format(int(res)))
+                f.write("c s exact arb float {}\n".format(float(res)))
 
 if __name__ == "__main__":
     clause_num, var_num, counter_type, clauses, projected, weighted = parse("wmc.cnf")
