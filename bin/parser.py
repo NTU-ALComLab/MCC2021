@@ -91,7 +91,8 @@ def parse(filename: str):
 def write_sdimacs(filename: str, clause_num, var_num, counter_type, clauses, projected, weighted):
     with open(filename, mode='w') as f:
         # HACK add one variable to create an exist level in MC or WMC
-        if counter_type != MCType.PROJECTED:
+        if counter_type != MCType.PROJECTED or len(projected) == var_num:
+            logger.info("Perform a workaround to create an ER-SSAT")
             f.write("p cnf {} {}\n".format(var_num+1, clause_num))
             f.write("e {} 0\n".format(var_num+1))
         else:
