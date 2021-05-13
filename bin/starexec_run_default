@@ -1,8 +1,22 @@
 #!/bin/bash
 
+
+function finish {
+  # Your cleanup code here
+    [ ! -z "$TMP_OUT" ] && rm $TMP_OUT
+    [ ! -z "$TMP_OUT2" ] && rm $TMP_OUT2
+}
+trap finish EXIT
+trap interrupted TERM
+trap interrupted INT
+
+TMP_OUT="$(mktemp).sdimacs"
+TMP_OUT2=$(mktemp)
+
 echo "Running the default configuration ..."
 echo "Input file: $1"
-echo "Converted SSAT file: $2"
-echo "Output file: $3"
+echo "Converted SSAT file: $TMP_OUT"
+echo "Output file: $TMP_OUT2"
 
-python3 ssatABC.py $1 $2 $3
+#run your python script
+python3 ssatABC.py $1 $TMP_OUT $TMP_OUT2
