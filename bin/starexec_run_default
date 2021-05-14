@@ -10,7 +10,7 @@ trap finish EXIT
 trap interrupted TERM
 trap interrupted INT
 
-TMP_OUT="$(mktemp).sdimacs"
+TMP_OUT="$(mktemp --suffix ".sdimacs")"
 TMP_OUT2=$(mktemp)
 
 echo "Running the default configuration ..."
