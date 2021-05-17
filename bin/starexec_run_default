@@ -20,3 +20,5 @@ echo "Output file: $TMP_OUT2"
 
 #run your python script
 python3 ssatABC.py $1 $TMP_OUT $TMP_OUT2
+echo "Result:"
+cat $TMP_OUT2

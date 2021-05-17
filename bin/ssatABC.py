@@ -38,6 +38,9 @@ if __name__ == "__main__":
     if (len(sys.argv) != 4):
         print_help()
         exit()
+    logger.info("Input File: {}".format(sys.argv[1]))
+    logger.info("Converted File: {}".format(sys.argv[2]))
+    logger.info("Output File: {}".format(sys.argv[3]))
     clause_num, var_num, counter_type, clauses, projected, weighted = parse(sys.argv[1])
     write_sdimacs(sys.argv[2], clause_num, var_num, counter_type, clauses, projected, weighted)
     logger.info("Finished converting MCC 2021 format into sdimacs")
